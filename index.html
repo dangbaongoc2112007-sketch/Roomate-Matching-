@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoomMatch VN - Tìm Bạn Cùng Phòng</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">⌂</span><span>RoomMatch <b>VN</b></span></a>
+    <nav class="nav" id="mainNav">
+      <a class="active" href="#discover">Khám phá Roommate</a>
+      <a href="#routine">Lịch trình &amp; Lối sống của tôi</a>
+      <a href="#saved">♧ Đã lưu <span class="count" id="savedCount">0</span></a>
+      <a href="#compare">♧ So sánh <span class="count" id="compareCount">0</span></a>
+    </nav>
+    <button class="profile-button" id="profileBtn">♙ Hồ sơ nếp sống</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">☰</button>
+  </header>
+
+  <main class="page" id="discover">
+    <section class="profile-panel" id="routine">
+      <div class="profile-heading">
+        <div class="avatar avatar-self">HA</div>
+        <div class="profile-intro">
+          <h1>Hoàng Minh Anh <span class="age">24 tuổi · Marketing Specialist tại Công ty Công nghệ</span></h1>
+          <p>Hệ thống đang tính toán độ tương thích dựa trên thói quen sinh hoạt cụ thể của bạn.</p>
+          <button class="soft-button" id="editLifestyle">☷ Chỉnh sửa nếp sống &amp; lịch trình</button>
+        </div>
+      </div>
+      <div class="habit-grid">
+        <div class="habit"><span class="habit-label orange">☼ Giờ thức dậy</span><strong>06:30 sáng</strong></div>
+        <div class="habit"><span class="habit-label purple">☾ Giờ đi ngủ</span><strong>23:00 đêm</strong></div>
+        <div class="habit"><span class="habit-label green">♧ Vệ sinh &amp; Gọn gàng</span><strong>4/5 · Rất ngăn nắp</strong></div>
+        <div class="habit"><span class="habit-label blue">✧ Nấu ăn &amp; Bếp</span><strong>Nấu ăn mỗi ngày</strong></div>
+        <div class="habit"><span class="habit-label pink">♡ Thuốc lá &amp; Thú cưng</span><strong>Không khói thuốc · Yêu thú cưng</strong></div>
+        <div class="habit"><span class="habit-label">Ngân sách dự kiến</span><strong>3.0 - 4.5 tr/tháng</strong></div>
+      </div>
+      <div class="sample-row">
+        <span>Thử nghiệm tính năng ghép đôi với các nếp sống mẫu:</span>
+        <button class="sample active" data-sample="office">Dân Văn Phòng Chuẩn Mực</button>
+        <button class="sample" data-sample="student">Sinh Viên / Lập Trình Viên Cú Đêm</button>
+        <button class="sample" data-sample="early">Người Kỷ Luật Dậy Sớm</button>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <button class="outline-button" id="filterBtn">☷ Bộ lọc sinh hoạt <span id="resultCount">(6 kết quả)</span></button>
+      <label class="sort-label"> <span class="sr-only">Sắp xếp</span>
+        <select id="sortSelect">
+          <option value="match">Độ tương thích cao nhất</option>
+          <option value="budget">Ngân sách thấp đến cao</option>
+          <option value="age">Tuổi tăng dần</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="match-grid" id="matchGrid" aria-live="polite"></section>
+    <div class="empty-state" id="emptyState" hidden>Không tìm thấy hồ sơ phù hợp với bộ lọc hiện tại.</div>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Đóng">×</button>
+      <h2 id="modalTitle">Bộ lọc sinh hoạt</h2>
+      <p class="modal-desc">Chọn tiêu chí để tìm người bạn cùng phòng phù hợp hơn.</p>
+      <label class="field-label" for="maxBudget">Ngân sách tối đa (triệu/tháng)</label>
+      <input id="maxBudget" type="range" min="2" max="8" step="0.5" value="8">
+      <div class="range-value"><span>2 triệu</span><strong id="budgetValue">8 triệu</strong><span>8 triệu</span></div>
+      <label class="check-row"><input type="checkbox" id="tidyOnly"> Ưu tiên người gọn gàng (từ 4/5)</label>
+      <label class="check-row"><input type="checkbox" id="noSmoke"> Không hút thuốc</label>
+      <div class="modal-actions"><button class="outline-button" id="resetFilters">Đặt lại</button><button class="primary-button" id="applyFilters">Áp dụng bộ lọc</button></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <footer>RoomMatch VN · Kết nối những người có lối sống phù hợp</footer>
+  <script src="script.js"></script>
+</body>
+</html>
